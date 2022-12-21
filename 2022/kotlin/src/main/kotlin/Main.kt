@@ -88,7 +88,7 @@ fun dayTwo() {
     val scoreListPartTwo = realDataList
             .map { Pair(it.substring(0, 1), it.substring(2,3)) }
             .map { chooseWinningMove(it.first, it.second) }
-    println("Part two sum: ${scoreListPartTwo.sum()} list: $scoreListPartTwo")
+    println("Part two sum: ${scoreListPartTwo.sum()})
 }
 
 fun main(args: Array<String>) {
