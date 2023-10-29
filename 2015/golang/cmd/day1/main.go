@@ -15,4 +15,6 @@ func main() {
 	}
 	result := day1.Part1(input)
 	fmt.Println(result)
+	resultDayTwo := day1.Part2(input)
+	fmt.Println("Day 2", resultDayTwo)
 }
