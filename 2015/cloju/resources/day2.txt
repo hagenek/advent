@@ -1,0 +1,39 @@
+Manuell utbetaling direkte fra regnskapssytemet
+Abonnementkontroll
+Aldersbekreftelse med Mobilbanken - Hackathon 2023
+Devmode i mobilbanken
+Enkelt opplegg for coachende ledelse - Hackaton 2023
+Ferdig utfylt lånesøknad fra SB1 Regnskap
+Forbedre AuditApp
+GPT Functions
+Hvor er det ledig plass? - Hackaton 2023
+Julekalender
+Krav og Betaling i SB1 Regnskap, pilotprosjekt skatteetaten
+Kredittscore i SpareBank 1 Regnskap
+Køsystem i Origo-skranken
+Likviditetsprognose i SpareBank 1 Regnskap
+Logo for AS under etablering
+LuXusfellen til folket
+Lønnsslipp fra SpareBank Regnskap i privat nett- og mobilbank
+Min økonomi - year in review
+Omni-Potatoes - Ny løsning for betjent chat i SpareBank1
+Par økonomi - Mange små forbedringer for par
+Pushvarsel i SpareBank 1 Regnskap ved bruk av bedriftskort eller kredittkort
+Regningskontoen blir smart
+Role mining IAM - Hackaton 2023
+SB1 Regnskap: Overføring mellom konto
+SB1-Selskapsnavngenerator - en BM JTBD must have
+SB1SK-sesjon som JWT - Hackaton 2023
+Signal har en demoapplikasjon for tracking
+Skriv om api-pm-mikrospar fra kotlin til Go
+Slack Sherrif
+Smartere FAQ
+Snakk med banken!
+SpareBøss1 - Hackaton 2023
+Syntetisk Testdatasøk
+Taskmania - Bygge en bro mellom rådgivere i banken og digitalbank
+Tvangssosialiseringsbot - Hackaton 2023
+URL forkorter for bruk i SB1 Utvikling
+Vise tilstander enkelt - Hackaton 2023
+z_Pizzaliste Hackathon 2023
+z_Template for idé - Hackaton 2023
