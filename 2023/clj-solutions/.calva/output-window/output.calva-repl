@@ -9,8 +9,8 @@
 ; You can make Calva auto-select this.
 ;   - See https://calva.io/connect-sequences/
 ; 
-; Starting Jack-in Terminal: pushd /Users/georg.ekeberg/repos/advent/2023/clj-solutions ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
-; Using host:port localhost:60419 ...
+; Starting Jack-in Terminal: pushd /home/hagenek/repos/advent/2023/clj-solutions ; clojure -Sdeps '{:deps {nrepl/nrepl {:mvn/version,"1.0.0"},cider/cider-nrepl {:mvn/version,"0.28.5"}}}' -M -m nrepl.cmdline --middleware "[cider.nrepl/cider-middleware]" ; popd
+; Using host:port localhost:39925 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; TIPS:
@@ -26,25 +26,125 @@ clj꞉user꞉>  ; Use `alt+enter` to evaluate
 clj꞉user꞉> 
 ; Jack-in done.
 clj꞉user꞉> 
-"Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green\nGame 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue\nGame 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red\nGame 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red\nGame 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"
+; Syntax error compiling at (src/day_two.clj:16:1).
+; Unable to resolve symbol: parse-game in this context
 clj꞉day-two꞉> 
-; Execution error (ClassCastException) at nrepl.middleware.interruptible-eval/evaluate$fn$fn (interruptible_eval.clj:87).
-; class java.lang.String cannot be cast to class clojure.lang.IFn (java.lang.String is in module java.base of loader 'bootstrap'; clojure.lang.IFn is in unnamed module of loader 'app')
+; Syntax error compiling at (src/day_two.clj:16:1).
+; Unable to resolve symbol: parse-game in this context
 clj꞉day-two꞉> 
-; Connecting using "undefined" project type.
-; You can make Calva auto-select this.
-;   - See https://calva.io/connect-sequences/
-; 
-; Aborting connect, error determining connect sequence.
-; Syntax error compiling at (src/day_two.clj:8:19).
-; No such namespace: s
+; Evaluating file: day_two.clj
+; Syntax error reading source at (src/day_two.clj:50:1).
+; EOF while reading, starting at line 5
+; Evaluation of file day_two.clj failed: class clojure.lang.Compiler$CompilerException
 clj꞉day-two꞉> 
-; Syntax error compiling at (src/day_two.clj:8:19).
-; No such namespace: s
+["Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green" "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue" "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red" "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red" "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"]
+clj꞉day-two꞉> 
+#'day-two/real-data
+clj꞉day-two꞉> 
+#'day-two/demo-data
+clj꞉day-two꞉> 
+; Syntax error compiling at (src/day_two.clj:16:1).
+; Unable to resolve symbol: parse-game in this context
+clj꞉day-two꞉> 
+; Syntax error compiling at (src/day_two.clj:0:0).
+; Unable to resolve symbol: lve in this context
+clj꞉day-two꞉> 
+; Evaluating file: day_two.clj
+; Execution error (ClassCastException) at day-two/parse-game (day_two.clj:14).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+; Evaluation of file day_two.clj failed: class clojure.lang.Compiler$CompilerException
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (day_two.clj:14).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+#'day-two/parse-game
 clj꞉day-two꞉> 
 nil
 clj꞉day-two꞉> 
-#'day-two/game1
+; Execution error (ClassCastException) at day-two/parse-game (REPL:14).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
 clj꞉day-two꞉> 
-"Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green"
+; Execution error (ClassCastException) at day-two/parse-game (REPL:14).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+#'day-two/parse-game
+clj꞉day-two꞉> 
+#'day-two/real-data
+clj꞉day-two꞉> 
+["Game 1: 3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green" "Game 2: 1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue" "Game 3: 8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red" "Game 4: 1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red" "Game 5: 6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"]
+clj꞉day-two꞉> 
+#'day-two/demo-data
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (REPL:13).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (REPL:13).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+#'day-two/parse-game
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (REPL:13).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (REPL:13).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (REPL:13).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+({:blue 3, :red 4} {:red 1, :green 2, :blue 6} {:green 2})
+clj꞉day-two꞉> 
+; Error printing return value (UnsupportedOperationException) at clojure.lang.RT/nthFrom (RT.java:992).
+; nth not supported on this type: Keyword
+clj꞉day-two꞉> 
+; Error printing return value (UnsupportedOperationException) at clojure.lang.RT/nthFrom (RT.java:992).
+; nth not supported on this type: Keyword
+clj꞉day-two꞉> 
+#'day-two/max-draws
+clj꞉day-two꞉> 
+{:blue 6, :red 4, :green 2}
+clj꞉day-two꞉> 
+{:blue 4, :green 3, :red 1}
+clj꞉day-two꞉> 
+; Execution error (ClassCastException) at day-two/parse-game (REPL:13).
+; class clojure.lang.PersistentVector cannot be cast to class java.lang.CharSequence (clojure.lang.PersistentVector is in unnamed module of loader 'app'; java.lang.CharSequence is in module java.base of loader 'bootstrap')
+clj꞉day-two꞉> 
+({:blue 6, :red 4, :green 2} {:blue 4, :green 3, :red 1} {:green 13, :blue 6, :red 20} {:green 3, :red 14, :blue 15} {:red 6, :blue 2, :green 3})
+clj꞉day-two꞉> 
+{:blue 6, :red 4, :green 2}
+clj꞉day-two꞉> 
+12
+clj꞉day-two꞉> 
+48
+clj꞉day-two꞉> 
+#'day-two/powerize
+clj꞉day-two꞉> 
+(48 12 1560 630 36)
+clj꞉day-two꞉> 
+2286
+clj꞉day-two꞉> 
+#'day-two/part-2
+clj꞉day-two꞉> 
+#'day-two/part-2
+clj꞉day-two꞉> 
+2286
+clj꞉day-two꞉> 
+#'day-two/part-2
+clj꞉day-two꞉> 
+66909
+clj꞉day-two꞉> 
+#'day-two/part-2
+clj꞉day-two꞉> 
+66909
+clj꞉day-two꞉> 
+; Syntax error compiling at (src/day_two.clj:37:1).
+; Unable to resolve symbol: solv1 in this context
+clj꞉day-two꞉> 
+; Evaluating file: day_two.clj
+66909
+clj꞉day-two꞉> 
+; Evaluating file: day_two.clj
+66909
+clj꞉day-two꞉> 
+2156
 clj꞉day-two꞉> 
