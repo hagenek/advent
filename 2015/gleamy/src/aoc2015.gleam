@@ -1,21 +1,14 @@
 // main.gleam
-import aoc_types.{
-  type DaySolution, type Solution, Answer, DaySolution, StringAnswer,
-}
+import aoc_types.{type DaySolution, DaySolution}
 import days/day01
 import days/day02
+import days/day03
 import gleam/int
 import gleam/io
 import gleam/list
 import gleam/string as str
 import simplifile
-
-pub fn format_answer(answer: Solution) -> String {
-  case answer {
-    Answer(n) -> int.to_string(n)
-    StringAnswer(s) -> s
-  }
-}
+import utils.{format_answer}
 
 pub fn run_day(day: Int, solution: DaySolution) {
   let path = "./txt/day" <> str.pad_left(int.to_string(day), 2, "0") <> ".txt"
@@ -46,8 +39,9 @@ pub fn main() {
   let solutions = [
     #(1, DaySolution(part1: day01.part1, part2: day01.part2)),
     #(2, DaySolution(part1: day02.part1, part2: day02.part2)),
-    // Add more days here in the same pattern
   ]
+
+  utils.solve_with_real_data(3, day03.part1)
 
   list.each(solutions, fn(day_solution) {
     let #(day, solution) = day_solution
