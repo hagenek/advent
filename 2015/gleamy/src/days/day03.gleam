@@ -99,18 +99,32 @@ pub fn part2(input: String) -> Solution {
     Ok(direction_list) -> {
       let #(santas_moves, robot_moves) = split_directions(direction_list)
 
-      let initial_state =
-        MoveMemory(
-          cp: Coordinates(x: 0, y: 0),
-          visited_nodes: set.from_list([Coordinates(x: 0, y: 0)]),
+      // Both Santa and Robot start at the origin
+      let initial_shared_state = set.from_list([Coordinates(x: 0, y: 0)])
+
+      // Track Santa's moves starting from origin
+      let santas_move_list =
+        list.fold(
+          santas_moves,
+          MoveMemory(
+            cp: Coordinates(x: 0, y: 0),
+            visited_nodes: initial_shared_state,
+          ),
+          move_to_coordinates,
         )
 
-      let santas_move_list =
-        list.fold(santas_moves, initial_state, move_to_coordinates)
-
+      // Track Robot's moves starting from origin
       let robot_move_list =
-        list.fold(robot_moves, initial_state, move_to_coordinates)
+        list.fold(
+          robot_moves,
+          MoveMemory(
+            cp: Coordinates(x: 0, y: 0),
+            visited_nodes: initial_shared_state,
+          ),
+          move_to_coordinates,
+        )
 
+      // Combine all visited locations
       let all_visited =
         set.union(santas_move_list.visited_nodes, robot_move_list.visited_nodes)
 

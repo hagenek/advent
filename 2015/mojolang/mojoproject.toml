@@ -2,7 +2,7 @@
 authors = ["Georg Ekeberg <georg.ekeberg@sparebank1.no>"]
 channels = ["conda-forge", "https://conda.modular.com/max"]
 description = "Add a short description here"
-name = "hello-world"
+name = "mojolang"
 platforms = ["osx-arm64"]
 version = "0.1.0"
 

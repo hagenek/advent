@@ -11,6 +11,11 @@ pub fn format_answer(answer: Solution) -> String {
   }
 }
 
+pub fn debug_return(x: a) -> a {
+  io.debug(x)
+  x
+}
+
 pub fn solve_with_real_data(
   day day: Int,
   with solution_function: fn(String) -> Solution,
