@@ -1,7 +1,10 @@
 import day01
+import day03
 import utils
 
 pub fn main() {
   utils.solve_with_real_data(1, day01.part1)
   utils.solve_with_real_data(1, day01.part2)
+  utils.solve_with_real_data(3, day03.part1)
+  utils.solve_with_real_data(3, day03.part2)
 }
