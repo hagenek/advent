@@ -1,5 +1,6 @@
 import day01
 import day03
+import day04
 import gleam/io
 import gleeunit
 import gleeunit/should
@@ -20,7 +21,6 @@ pub fn day1_part1_single_step_test() {
 3   3",
     )
 
-  io.debug(ans)
   types.Answer(ans) |> should.equal(types.Answer(11))
 }
 
@@ -39,7 +39,6 @@ pub fn day01_part1_multi_test() {
 83974   34443",
     )
 
-  io.debug(ans)
   types.Answer(ans) |> should.equal(types.Answer(35_988))
 }
 
@@ -54,7 +53,6 @@ pub fn day01_part2_single_test() {
 3   3",
     )
 
-  io.debug(ans)
   types.Answer(ans) |> should.equal(types.Answer(31))
 }
 
@@ -93,4 +91,112 @@ pub fn day03_part2_3_test() {
   "don't()mul(5,5)do()mul(2,2)don't()mul(3,3)"
   |> day03.part2
   |> should.equal(types.Answer(4))
+}
+
+fn debug_and_return(v: v) -> v {
+  io.debug(v)
+  v
+}
+
+pub fn day04_part_1_test() {
+  "MMMSXXMASM"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_test() {
+  "MMMSXXMASM\nMMMSXXMASM"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_backwards_test() {
+  "MMMSXXSAMM\nMMSAMXXSAMM"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_vertical_test() {
+  "XMMXXXSAMM
+MMSAXXXSAMM
+AMSAXXXSAMM
+SMSAXXXSAMM
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_test() {
+  "X*******
+*M*********
+**A********
+***S*******
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_2_test() {
+  "X******X***
+*M******M**
+**A******A*
+***S******S
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_mini_forward_backward_test() {
+  "XScde
+1MA45
+fgAMh
+lmnSX
+"
+  |> day04.part1
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_mini_forwadsfard_backward_test() {
+  "
+XbcdSe**
+1MA45A**
+fgAMh*M*
+lmnSX**X
+"
+  |> day04.part1
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_6_test() {
+  "X***S***
+*M***A**
+**A***M*
+***S***X
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_demo_data_test() {
+  "....XXMAS.
+.SAMXMS...
+...S..A...
+..A.A.MS.X
+XMASAMX.MM
+X.....XA.A
+S.S.S.S.SS
+.A.A.A.A.A
+..M.M.M.MM
+.X.X.XMASX
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(18))
 }
