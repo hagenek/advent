@@ -2,6 +2,7 @@ import gleam/int
 import gleam/io
 import gleam/list
 import gleam/string
+import simplifile
 import types.{type Solution, Answer, StringAnswer}
 
 pub fn format_answer(answer: Solution) -> String {
@@ -16,7 +17,6 @@ pub fn debug_return(x: a) -> a {
   x
 }
 
-<<<<<<< HEAD
 pub fn int(str: String) -> Int {
   let assert Ok(n) = int.parse(str)
   n
@@ -32,7 +32,8 @@ pub fn delimited_list(
 
 pub fn ints(str: String, split_on delimiter: String) -> List(Int) {
   delimited_list(str, delimiter, int)
-=======
+}
+
 pub fn solve_with_real_data(
   day day: Int,
   with solution_function: fn(String) -> Solution,
@@ -57,5 +58,4 @@ pub fn solve_with_real_data(
     }
     Error(_) -> panic as { "Couldn't read file at path " <> path }
   }
->>>>>>> a3b04ab (day 4 done)
 }
