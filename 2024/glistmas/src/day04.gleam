@@ -1,6 +1,5 @@
 import gleam/dict.{type Dict}
 import gleam/int
-import gleam/io
 import gleam/list
 import gleam/result
 import gleam/set.{type Set}
@@ -95,13 +94,6 @@ fn get_all_lines(input: String) {
   possible_lines
 }
 
-pub fn part1(input: String) -> Solution {
-  let possible_lines = get_all_lines(input)
-  let count = possible_lines |> list.map(find_xmas(0, _)) |> int.sum
-
-  Answer(count)
-}
-
 pub type Point {
   Point(x: Int, y: Int)
 }
@@ -127,6 +119,64 @@ pub type Cross {
   Cross(Point, Point, Point, Point, Point)
 }
 
+fn check_point(
+  acc: Set(Cross),
+  point_tuple: #(Point, String),
+  grid: Dict(Point, String),
+) -> Set(Cross) {
+  let #(curr_point, current_letter) = point_tuple
+
+  let upper_right_point = point_add(curr_point, Point(x: 0, y: 2))
+  let upper_right_letter = get_value(grid, upper_right_point)
+
+  let middle_point = point_add(curr_point, Point(x: 1, y: 1))
+  let middle_letter = get_value(grid, middle_point)
+
+  let bottom_left_point = point_add(curr_point, Point(x: 2, y: 0))
+  let bottom_left_letter = get_value(grid, bottom_left_point)
+
+  let bottom_right_point = point_add(curr_point, Point(x: 2, y: 2))
+  let bottom_right_letter = get_value(grid, bottom_right_point)
+
+  let cross =
+    Cross(
+      curr_point,
+      upper_right_point,
+      middle_point,
+      bottom_left_point,
+      bottom_right_point,
+    )
+
+  case
+    current_letter,
+    upper_right_letter,
+    middle_letter,
+    bottom_left_letter,
+    bottom_right_letter
+  {
+    "S", "M", "A", "S", "M" -> {
+      set.insert(acc, cross)
+    }
+    "S", "S", "A", "M", "M" -> {
+      set.insert(acc, cross)
+    }
+    "M", "S", "A", "M", "S" -> {
+      set.insert(acc, cross)
+    }
+    "M", "M", "A", "S", "S" -> {
+      set.insert(acc, cross)
+    }
+    _, _, _, _, _ -> acc
+  }
+}
+
+pub fn part1(input: String) -> Solution {
+  let possible_lines = get_all_lines(input)
+  let count = possible_lines |> list.map(find_xmas(0, _)) |> int.sum
+
+  Answer(count)
+}
+
 pub fn part2(input: String) -> Solution {
   let lines = extract_lines_from_data(input)
   let mx = lines |> list.map(string.to_graphemes)
@@ -134,57 +184,10 @@ pub fn part2(input: String) -> Solution {
     list_of_list_to_fields(mx) |> list.flatten |> list.unique
   let grid = points_to_check |> dict.from_list
 
-  let check_point = fn(acc: Set(Cross), point_tuple: #(Point, String)) -> Set(
-    Cross,
-  ) {
-    let #(curr_point, current_letter) = point_tuple
-
-    let upper_right_point = point_add(curr_point, Point(x: 0, y: 2))
-    let upper_right_letter = get_value(grid, upper_right_point)
-
-    let middle_point = point_add(curr_point, Point(x: 1, y: 1))
-    let middle_letter = get_value(grid, middle_point)
-
-    let bottom_left_point = point_add(curr_point, Point(x: 2, y: 0))
-    let bottom_left_letter = get_value(grid, bottom_left_point)
-
-    let bottom_right_point = point_add(curr_point, Point(x: 2, y: 2))
-    let bottom_right_letter = get_value(grid, bottom_right_point)
-
-    let cross =
-      Cross(
-        curr_point,
-        upper_right_point,
-        middle_point,
-        bottom_left_point,
-        bottom_right_point,
-      )
-
-    case
-      current_letter,
-      upper_right_letter,
-      middle_letter,
-      bottom_left_letter,
-      bottom_right_letter
-    {
-      "S", "M", "A", "S", "M" -> {
-        set.insert(acc, cross)
-      }
-      "S", "S", "A", "M", "M" -> {
-        set.insert(acc, cross)
-      }
-      "M", "S", "A", "M", "S" -> {
-        set.insert(acc, cross)
-      }
-      "M", "M", "A", "S", "S" -> {
-        set.insert(acc, cross)
-      }
-      _, _, _, _, _ -> acc
-    }
-  }
-
   let result =
-    list.fold(over: points_to_check, from: set.new(), with: check_point)
+    list.fold(over: points_to_check, from: set.new(), with: fn(acc, point) {
+      check_point(acc, point, grid)
+    })
 
   set.size(result) |> Answer
 }
