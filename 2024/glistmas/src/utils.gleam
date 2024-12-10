@@ -1,7 +1,7 @@
 import gleam/int
 import gleam/io
+import gleam/list
 import gleam/string
-import simplifile
 import types.{type Solution, Answer, StringAnswer}
 
 pub fn format_answer(answer: Solution) -> String {
@@ -16,25 +16,19 @@ pub fn debug_return(x: a) -> a {
   x
 }
 
-pub fn solve_with_real_data(
-  day day: Int,
-  with solution_function: fn(String) -> Solution,
-) {
-  let path =
-    "./txt/day" <> string.pad_start(int.to_string(day), 2, "0") <> ".txt"
+pub fn int(str: String) -> Int {
+  let assert Ok(n) = int.parse(str)
+  n
+}
 
-  case simplifile.read(path) {
-    Ok(data) -> {
-      let clean_data = string.trim(data)
-      let part1_result = solution_function(clean_data)
+pub fn delimited_list(
+  str: String,
+  split_on delimiter: String,
+  using f: fn(String) -> a,
+) -> List(a) {
+  str |> string.split(delimiter) |> list.map(f)
+}
 
-      io.println(
-        "Day "
-        <> int.to_string(day)
-        <> " part 1: "
-        <> format_answer(part1_result),
-      )
-    }
-    Error(_) -> panic as { "Couldn't read file at path " <> path }
-  }
+pub fn ints(str: String, split_on delimiter: String) -> List(Int) {
+  delimited_list(str, delimiter, int)
 }

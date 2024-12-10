@@ -1,4 +1,5 @@
 import day01
+import day02
 import gleam/io
 import gleeunit
 import gleeunit/should
@@ -55,4 +56,47 @@ pub fn day01_part2_single_test() {
 
   io.debug(ans)
   Answer(ans) |> should.equal(Answer(31))
+}
+
+// 7 6 4 2 1
+// 1 2 7 8 9
+// 9 7 6 2 1
+// 1 3 2 4 5
+// 8 6 4 4 1
+// 1 3 6 7 9
+
+// The levels are either all increasing or all decreasing.
+// Any two adjacent levels differ by at least one and at most three.
+pub fn day02_part1_single_test() {
+  day02.line_ok([7, 6, 4, 2, 1]) |> should.be_true()
+}
+
+pub fn day02_part1_multi_test() {
+  let assert Answer(ans) =
+    day02.part1(
+      "7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9",
+    )
+
+  io.debug(ans)
+  Answer(ans) |> should.equal(Answer(2))
+}
+
+pub fn day02_part2_multi_test() {
+  let assert Answer(ans) =
+    day02.part2(
+      "7 6 4 2 1
+1 2 7 8 9
+9 7 6 2 1
+1 3 2 4 5
+8 6 4 4 1
+1 3 6 7 9",
+    )
+
+  io.debug(ans)
+  Answer(ans) |> should.equal(Answer(4))
 }
