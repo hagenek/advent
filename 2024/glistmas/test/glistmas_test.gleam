@@ -1,16 +1,17 @@
 import day01
-import day02
+import day03
+import day04
 import gleam/io
 import gleeunit
 import gleeunit/should
-import types.{Answer}
+import types
 
 pub fn main() {
   gleeunit.main()
 }
 
 pub fn day1_part1_single_step_test() {
-  let assert Answer(ans) =
+  let assert types.Answer(ans) =
     day01.part1(
       "3   4
 4   3
@@ -20,8 +21,7 @@ pub fn day1_part1_single_step_test() {
 3   3",
     )
 
-  io.debug(ans)
-  Answer(ans) |> should.equal(Answer(11))
+  types.Answer(ans) |> should.equal(types.Answer(11))
 }
 
 // 33933 18696 diff = 15237
@@ -31,7 +31,7 @@ pub fn day1_part1_single_step_test() {
 // Total diff = 35988
 
 pub fn day01_part1_multi_test() {
-  let assert Answer(ans) =
+  let assert types.Answer(ans) =
     day01.part1(
       "35446   18696
 46314   66062
@@ -39,12 +39,11 @@ pub fn day01_part1_multi_test() {
 83974   34443",
     )
 
-  io.debug(ans)
-  Answer(ans) |> should.equal(Answer(35_988))
+  types.Answer(ans) |> should.equal(types.Answer(35_988))
 }
 
 pub fn day01_part2_single_test() {
-  let assert Answer(ans) =
+  let assert types.Answer(ans) =
     day01.part2(
       "3   4
 4   3
@@ -54,49 +53,150 @@ pub fn day01_part2_single_test() {
 3   3",
     )
 
-  io.debug(ans)
-  Answer(ans) |> should.equal(Answer(31))
+  types.Answer(ans) |> should.equal(types.Answer(31))
 }
 
-// 7 6 4 2 1
-// 1 2 7 8 9
-// 9 7 6 2 1
-// 1 3 2 4 5
-// 8 6 4 4 1
-// 1 3 6 7 9
-
-// The levels are either all increasing or all decreasing.
-// Any two adjacent levels differ by at least one and at most three.
-pub fn day02_part1_single_test() {
-  day02.line_ok([7, 6, 4, 2, 1]) |> should.be_true()
+// Test 1: Basic example from problem statement
+pub fn day03_part1_test1() {
+  ");>]mul(2,4)mul(3,3)"
+  |> day03.part1
+  |> should.equal(types.Answer(17))
 }
 
-pub fn day02_part1_multi_test() {
-  let assert Answer(ans) =
-    day02.part1(
-      "7 6 4 2 1
-1 2 7 8 9
-9 7 6 2 1
-1 3 2 4 5
-8 6 4 4 1
-1 3 6 7 9",
-    )
-
-  io.debug(ans)
-  Answer(ans) |> should.equal(Answer(2))
+pub fn day03_part1_test2() {
+  "mul(5,5)mul(2,2)"
+  |> day03.part1
+  |> should.equal(types.Answer(29))
 }
 
-pub fn day02_part2_multi_test() {
-  let assert Answer(ans) =
-    day02.part2(
-      "7 6 4 2 1
-1 2 7 8 9
-9 7 6 2 1
-1 3 2 4 5
-8 6 4 4 1
-1 3 6 7 9",
-    )
+pub fn day03_part1_test3() {
+  "mul(3,4)mul(2,5)mul(1,6)"
+  |> day03.part1
+  |> should.equal(types.Answer(32))
+}
 
-  io.debug(ans)
-  Answer(ans) |> should.equal(Answer(4))
+pub fn day03_part2_1_test() {
+  "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)do()?mul(8,5))"
+  |> day03.part2
+  |> should.equal(types.Answer(48))
+}
+
+pub fn day03_part2_2_test() {
+  "mul(2,3)don't()mul(4,5)mul(1,2)do()mul(3,4)"
+  |> day03.part2
+  |> should.equal(types.Answer(18))
+}
+
+pub fn day03_part2_3_test() {
+  "don't()mul(5,5)do()mul(2,2)don't()mul(3,3)"
+  |> day03.part2
+  |> should.equal(types.Answer(4))
+}
+
+fn debug_and_return(v: v) -> v {
+  io.debug(v)
+  v
+}
+
+pub fn day04_part_1_test() {
+  "MMMSXXMASM"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_test() {
+  "MMMSXXMASM\nMMMSXXMASM"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_backwards_test() {
+  "MMMSXXSAMM\nMMSAMXXSAMM"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_vertical_test() {
+  "XMMXXXSAMM
+MMSAXXXSAMM
+AMSAXXXSAMM
+SMSAXXXSAMM
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_test() {
+  "X*******
+*M*********
+**A********
+***S*******
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_2_test() {
+  "X******X***
+*M******M**
+**A******A*
+***S******S
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_mini_forward_backward_test() {
+  "XScde
+1MA45
+fgAMh
+lmnSX
+"
+  |> day04.part1
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_mini_forwadsfard_backward_test() {
+  "
+XbcdSe**
+1MA45A**
+fgAMh*M*
+lmnSX**X
+"
+  |> day04.part1
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_multiple_lines_diagonal_6_test() {
+  "X***S***
+*M***A**
+**A***M*
+***S***X
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(2))
+}
+
+pub fn day04_part_1_demo_data_test() {
+  "....XXMAS.
+.SAMXMS...
+...S..A...
+..A.A.MS.X
+XMASAMX.MM
+X.....XA.A
+S.S.S.S.SS
+.A.A.A.A.A
+..M.M.M.MM
+.X.X.XMASX
+"
+  |> day04.part1
+  |> debug_and_return
+  |> should.equal(types.Answer(18))
 }

@@ -9,7 +9,7 @@ fn extract_lines_from_data(data: String) -> List(String) {
   |> string.trim
   |> string.split("\n")
   |> list.map(string.trim)
-  |> list.filter(fn(line) { line != "" })
+  |> list.filter(fn(s) { !string.is_empty(s) })
 }
 
 fn parse_to_columns(data: String) -> #(List(Int), List(Int)) {
