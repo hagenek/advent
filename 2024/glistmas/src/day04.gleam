@@ -1,7 +1,9 @@
-import gleam/dict
+import gleam/dict.{type Dict}
 import gleam/int
 import gleam/io
 import gleam/list
+import gleam/result
+import gleam/set.{type Set}
 import gleam/string
 import types.{type Solution, Answer}
 
@@ -29,34 +31,10 @@ fn find_xmas(count: Int, line: List(String)) -> Int {
   }
 }
 
-fn find_mas(masses: List(List(Coordinate)), line: List(CoordinateMap)) {
-  case line |> list.reverse {
-    [
-      CoordinateMap(c1, "M"),
-      CoordinateMap(c2, "A"),
-      CoordinateMap(c3, "S"),
-      ..rest
-    ] -> find_mas([[c1, c2, c3], ..masses], rest)
-
-    [
-      CoordinateMap(c1, "S"),
-      CoordinateMap(c2, "A"),
-      CoordinateMap(c3, "M"),
-      ..rest
-    ] -> find_mas([[c1, c2, c3], ..masses], rest)
-
-    [_, ..rest] -> find_mas(masses, rest)
-    [] -> masses |> list.flatten
-  }
-}
-
 fn extract_coordinates(lines: List(String), x: Int) -> List(CoordinateMap) {
   lines
   |> list.index_map(fn(char, index) { CoordinateMap(Coord(x, index), char) })
 }
-
-// ex [#(0,1), #(0,2),
-//  #(1, 1), #(1, 2)]
 
 fn coordinates_to_possible_lines(
   coords: List(CoordinateMap),
@@ -87,23 +65,12 @@ fn coordinates_to_possible_lines(
 
   let diagonals = list.append(diagonals_down, diagonals_up)
 
-  let possible_lines_x = list.map(horizontal, coordinate_map_to_chars)
-  let possible_lines_y = list.map(vertical, coordinate_map_to_chars)
-  let possible_lines_xy = list.map(diagonals, coordinate_map_to_chars)
-
-  let countx = possible_lines_x |> list.map(find_xmas(0, _)) |> int.sum
-  let county = possible_lines_y |> list.map(find_xmas(0, _)) |> int.sum
-  let countxy = possible_lines_xy |> list.map(find_xmas(0, _)) |> int.sum
-
-  io.debug(#("DIAG", countxy, "VERT", county, "HORI", countx))
-
   list.flatten([diagonals, vertical, horizontal])
 }
 
 fn coordinate_map_to_chars(line: List(CoordinateMap)) -> List(String) {
   let line_regular = list.map(line, fn(x: CoordinateMap) { x.char })
   let line_backwards = line_regular |> list.reverse
-  io.debug(#("Regular:", line_regular, "\nBackwards", line_backwards))
   let l = list.append(line_regular, line_backwards)
   l
 }
@@ -135,6 +102,89 @@ pub fn part1(input: String) -> Solution {
   Answer(count)
 }
 
-pub fn part2(_input: String) {
-  panic as "Not implemented"
+pub type Point {
+  Point(x: Int, y: Int)
+}
+
+pub fn point_add(p1: Point, p2: Point) -> Point {
+  Point(x: p1.x + p2.x, y: p1.y + p2.y)
+}
+
+pub fn get_value(grid: Dict(Point, String), point: Point) -> String {
+  dict.get(grid, point)
+  |> result.unwrap("*")
+}
+
+fn list_of_list_to_fields(xs: List(List(String))) {
+  xs
+  |> list.index_map(fn(line, y) {
+    line
+    |> list.index_map(fn(char, x) { #(Point(x, y), char) })
+  })
+}
+
+pub type Cross {
+  Cross(Point, Point, Point, Point, Point)
+}
+
+pub fn part2(input: String) -> Solution {
+  let lines = extract_lines_from_data(input)
+  let mx = lines |> list.map(string.to_graphemes)
+  let points_to_check =
+    list_of_list_to_fields(mx) |> list.flatten |> list.unique
+  let grid = points_to_check |> dict.from_list
+
+  let check_point = fn(acc: Set(Cross), point_tuple: #(Point, String)) -> Set(
+    Cross,
+  ) {
+    let #(curr_point, current_letter) = point_tuple
+
+    let upper_right_point = point_add(curr_point, Point(x: 0, y: 2))
+    let upper_right_letter = get_value(grid, upper_right_point)
+
+    let middle_point = point_add(curr_point, Point(x: 1, y: 1))
+    let middle_letter = get_value(grid, middle_point)
+
+    let bottom_left_point = point_add(curr_point, Point(x: 2, y: 0))
+    let bottom_left_letter = get_value(grid, bottom_left_point)
+
+    let bottom_right_point = point_add(curr_point, Point(x: 2, y: 2))
+    let bottom_right_letter = get_value(grid, bottom_right_point)
+
+    let cross =
+      Cross(
+        curr_point,
+        upper_right_point,
+        middle_point,
+        bottom_left_point,
+        bottom_right_point,
+      )
+
+    case
+      current_letter,
+      upper_right_letter,
+      middle_letter,
+      bottom_left_letter,
+      bottom_right_letter
+    {
+      "S", "M", "A", "S", "M" -> {
+        set.insert(acc, cross)
+      }
+      "S", "S", "A", "M", "M" -> {
+        set.insert(acc, cross)
+      }
+      "M", "S", "A", "M", "S" -> {
+        set.insert(acc, cross)
+      }
+      "M", "M", "A", "S", "S" -> {
+        set.insert(acc, cross)
+      }
+      _, _, _, _, _ -> acc
+    }
+  }
+
+  let result =
+    list.fold(over: points_to_check, from: set.new(), with: check_point)
+
+  set.size(result) |> Answer
 }

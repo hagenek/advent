@@ -1,7 +1,6 @@
 import day01
 import day03
 import day04
-import gleam/io
 import gleeunit
 import gleeunit/should
 import types
@@ -93,29 +92,21 @@ pub fn day03_part2_3_test() {
   |> should.equal(types.Answer(4))
 }
 
-fn debug_and_return(v: v) -> v {
-  io.debug(v)
-  v
-}
-
 pub fn day04_part_1_test() {
   "MMMSXXMASM"
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(1))
 }
 
 pub fn day04_part_1_multiple_lines_test() {
   "MMMSXXMASM\nMMMSXXMASM"
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(2))
 }
 
 pub fn day04_part_1_multiple_lines_backwards_test() {
   "MMMSXXSAMM\nMMSAMXXSAMM"
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(1))
 }
 
@@ -126,7 +117,6 @@ AMSAXXXSAMM
 SMSAXXXSAMM
 "
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(1))
 }
 
@@ -137,7 +127,6 @@ pub fn day04_part_1_multiple_lines_diagonal_test() {
 ***S*******
 "
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(1))
 }
 
@@ -148,7 +137,6 @@ pub fn day04_part_1_multiple_lines_diagonal_2_test() {
 ***S******S
 "
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(2))
 }
 
@@ -180,23 +168,42 @@ pub fn day04_part_1_multiple_lines_diagonal_6_test() {
 ***S***X
 "
   |> day04.part1
-  |> debug_and_return
   |> should.equal(types.Answer(2))
 }
 
-pub fn day04_part_1_demo_data_test() {
-  "....XXMAS.
-.SAMXMS...
-...S..A...
-..A.A.MS.X
-XMASAMX.MM
-X.....XA.A
-S.S.S.S.SS
-.A.A.A.A.A
-..M.M.M.MM
-.X.X.XMASX
-"
-  |> day04.part1
-  |> debug_and_return
-  |> should.equal(types.Answer(18))
+pub fn day04_part_2_multiple_lines_diagonal_1_test() {
+  let first =
+    "M*S
+*A*
+M*S"
+
+  let second =
+    "M*M
+*A*
+S*S"
+
+  let third =
+    "S*S
+*A*
+M*M"
+
+  third |> day04.part2 |> should.equal(types.Answer(1))
+  second |> day04.part2 |> should.equal(types.Answer(1))
+  first |> day04.part2 |> should.equal(types.Answer(1))
+}
+
+pub fn day04_part_2_multiple_lines_diagonal_2_test() {
+  "
+.M.S......
+..A..MSMS.
+.M.S.MAA..
+..A.ASMSM.
+.M.S.M....
+..........
+S.S.S.S.S.
+.A.A.A.A..
+M.M.M.M.M.
+.........."
+  |> day04.part2
+  |> should.equal(types.Answer(9))
 }
