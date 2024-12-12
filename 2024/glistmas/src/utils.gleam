@@ -22,6 +22,7 @@ pub fn int(str: String) -> Int {
   n
 }
 
+/// Takes a string, splits it at each delimiter, then transforms each section using the given function
 pub fn delimited_list(
   str: String,
   split_on delimiter: String,
@@ -30,6 +31,7 @@ pub fn delimited_list(
   str |> string.split(delimiter) |> list.map(f)
 }
 
+/// Splits a string on the given delimiter and parses each section as an integer
 pub fn ints(str: String, split_on delimiter: String) -> List(Int) {
   delimited_list(str, delimiter, int)
 }

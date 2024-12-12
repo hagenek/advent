@@ -13,18 +13,29 @@ func calculateFuel(mass int) int {
 	return int(f64fuel) - 2
 }
 
+func calculateFuelOnFuel(mass int) int {
+	new_fuel := calculateFuel(mass)
+	if calculateFuel(mass) <= 0 {
+		return 0
+	} else {
+		return new_fuel + calculateFuelOnFuel(new_fuel)
+	}
+}
+
 func Day1(input string) (int, int) {
 	lines := strings.Split(strings.TrimSpace(input), "\n")
 
-	totalFuel := 0
+	totalFuelPart1 := 0
+	totalFuelPart2 := 0
 	for _, line := range lines {
 		line = strings.TrimSpace(line)
 		mass, err := strconv.Atoi(line)
 		if err != nil {
 			continue // Skip invalid numbers
 		}
-		totalFuel += calculateFuel(mass)
+		totalFuelPart1 += calculateFuel(mass)
+		totalFuelPart2 += calculateFuelOnFuel(mass)
 	}
 
-	return totalFuel, 0 // Part 2 not implemented yet
+	return totalFuelPart1, totalFuelPart2 // Part 2 not implemented yet
 }

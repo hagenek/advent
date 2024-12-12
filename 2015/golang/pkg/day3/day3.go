@@ -32,15 +32,5 @@ func Part1(input string) int {
 
 func Part2(input string) int {
 	p1 := Position{0, 0}
-	p2 := Position{0, 0}
-	visited := make(map[string]bool)
-	visited[coordString(p1.X, p1.Y)] = true
-	for i, char := range input {
-		if i%2 == 0 {
-			p1.Move(char)
-		} else {
-			p2.Move(char)
-		}
-	}
-	return len(visited)
 }
+

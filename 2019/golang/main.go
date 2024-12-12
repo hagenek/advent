@@ -28,6 +28,10 @@ func main() {
 		result1, result2 := days.Day1(cleanInput)
 		fmt.Printf("Day %d Part 1: %v\n", *day, result1)
 		fmt.Printf("Day %d Part 2: %v\n", *day, result2)
+	case 2:
+		result1, result2 := days.Day02(cleanInput)
+		fmt.Printf("Day %d Part 1: %v\n", *day, result1)
+		fmt.Printf("Day %d Part 2: %v\n", *day, result2)
 	default:
 		fmt.Printf("Day %d not implemented\n", *day)
 	}
