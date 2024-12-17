@@ -1,0 +1,38 @@
+# .air.toml
+root = "."
+testdata_dir = "testdata"
+tmp_dir = "tmp"
+
+[build]
+# Just a placeholder build command since we're focusing on tests
+cmd = "go build -v ."
+bin = ""
+full_bin = ""
+include_ext = ["go"]
+exclude_dir = ["assets", "tmp", "vendor", "testdata"]
+include_dir = ["days"]
+exclude_file = []
+delay = 1000 # ms
+stop_on_error = true
+send_interrupt = false
+kill_delay = 500 # ms
+
+[log]
+time = false
+
+[color]
+main = "magenta"
+watcher = "cyan"
+build = "yellow"
+runner = "green"
+
+[misc]
+clean_on_exit = true
+
+[screen]
+clear_on_rebuild = true
+
+# This is the key part - we'll use a custom script to run tests
+[scripts]
+# This will run whenever files change
+test = "cd days && go test ./..."
