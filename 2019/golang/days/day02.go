@@ -46,10 +46,17 @@ func part1(input string) int {
 	fmt.Printf("Receiving input %s", input)
 	p := parseToProgram(input)
 
-	p[1] = 12
-	p[2] = 2
+	if len(p) > 2 {
+		p[1] = 12
+		p[2] = 2
+	}
 
-	fmt.Printf("After 1202 init: %v\n", p[:10]) // print first 10 numbers to verify
+	// Take first 10 elements manually instead of using Chunk
+	firstTen := p
+	if len(p) > 10 {
+		firstTen = p[:10]
+	}
+	fmt.Printf("After 1202 init: %v\n", firstTen) // print first 10 numbers to verify
 
 	fmt.Printf("Parsed program %v", p)
 
@@ -62,12 +69,18 @@ func part1(input string) int {
 			break
 		}
 
-		do_operation(&p, Instructions{
+		inst := Instructions{
 			opcode: p[i],
 			x:      p[i+1],
 			y:      p[i+2],
 			res_i:  p[i+3],
-		})
+		}
+
+		if inst.x >= len(p) || inst.y >= len(p) || inst.res_i >= len(p) {
+			break
+		}
+
+		do_operation(&p, inst)
 	}
 
 	return p[0]

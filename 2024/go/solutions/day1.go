@@ -2,7 +2,6 @@ package solutions
 
 import (
 	"math"
-	"os"
 	"sort"
 	"strconv"
 	"strings"
@@ -79,11 +78,6 @@ func Day1Part2(input string) int {
 }
 
 func Day1() (int, int) {
-	content, err := os.ReadFile("inputs/day01.txt")
-	if err != nil {
-		return 0, 0
-	}
-	inputString := string(content)
-
-	return Day1Part1(inputString), Day1Part2(inputString)
+	input := readInputFile(1)
+	return Day1Part1(input), Day1Part2(input)
 }
