@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"github.com/hagenek/advent/2015/golang/pkg/day2"
+
+	"github.com/hagenek/advent/2015/golang/day2"
 	"github.com/hagenek/advent/2015/golang/utils"
 )
 

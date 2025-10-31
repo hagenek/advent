@@ -1,10 +1,11 @@
 package day2_test
 
 import (
-	"github.com/hagenek/advent/2015/golang/pkg/day2"
+	"testing"
+
+	"github.com/hagenek/advent/2015/golang/day2"
 	"github.com/hagenek/advent/2015/golang/utils"
 	"github.com/stretchr/testify/assert"
-	"testing"
 )
 
 func TestPart1(t *testing.T) {

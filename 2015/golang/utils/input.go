@@ -13,7 +13,7 @@ func ReadInput(day int) (string, error) {
 		return "", errors.New("day number must be between 1 and 24")
 	}
 
-	filepath := fmt.Sprintf("/Users/georg.ekeberg/repos/advent/2015/golang/input/day%d.txt", day)
+	filepath := fmt.Sprintf("input/day%d.txt", day)
 	data, err := os.ReadFile(filepath)
 	if err != nil {
 		return "", fmt.Errorf("error reading file: %v. \nPlease ensure the file exists in the expected folder", err)
