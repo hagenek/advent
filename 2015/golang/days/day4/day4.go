@@ -21,7 +21,7 @@ func Part1(input string) int {
 }
 
 func Part2(input string) int {
-	for number := 0; number < 100_000_000; number++ {
+	for number := range 100_000_000 {
 		data := input + strconv.Itoa(number)
 		hashSum := md5.Sum([]byte(data))
 		hashString := fmt.Sprintf("%x", hashSum)

@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/hagenek/advent/2015/golang/day4"
+	"github.com/hagenek/advent/2015/golang/days/day4"
 	"github.com/hagenek/advent/2015/golang/utils"
 )
 

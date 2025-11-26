@@ -3,7 +3,7 @@ package day2_test
 import (
 	"testing"
 
-	"github.com/hagenek/advent/2015/golang/day2"
+	"github.com/hagenek/advent/2015/golang/days/day2"
 	"github.com/hagenek/advent/2015/golang/utils"
 	"github.com/stretchr/testify/assert"
 )
