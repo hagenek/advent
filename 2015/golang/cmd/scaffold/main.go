@@ -184,11 +184,18 @@ func generateScaffolding(day int) error {
 		return err
 	}
 
+	// Create empty instructions file
+	instructionsFile := filepath.Join(dayDir, "instructions.md")
+	if err := writeFile(instructionsFile, ""); err != nil {
+		return err
+	}
+
 	fmt.Printf("Generated scaffolding for day %d:\n", day)
 	fmt.Printf("  - %s\n", dayFile)
 	fmt.Printf("  - %s\n", testFile)
 	fmt.Printf("  - %s\n", mainFile)
 	fmt.Printf("  - %s\n", inputFile)
+	fmt.Printf("  - %s\n", instructionsFile)
 
 	return nil
 }

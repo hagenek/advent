@@ -23,6 +23,11 @@ This is an Advent of Code 2015 solution repository written in Go. The project fo
 
 ## Common Commands
 
+**Create scaffolding for a new day:**
+```bash
+go run cmd/scaffold/main.go 15
+```
+
 **Run a specific day's solution:**
 ```bash
 go run cmd/day1/main.go
