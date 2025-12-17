@@ -1,10 +1,26 @@
 package day17
 
+import (
+	"fmt"
+
+	"github.com/hagenek/advent/2015/golang/utils"
+)
+
 // Part1 solves Advent of Code 2015 Day 17, Part 1.
 // Implement the solution and return the result as an int.
 // TODO: implement
 func Part1(input string) int {
-	// TODO: implement part 1
+	//
+	change := []int{20, 15, 10, 5, 5}
+
+	ps := utils.HeapsPermutation(change)
+
+	for _, p := range ps {
+		for _, c := range p {
+			fmt.Printf("Value: %d", c)
+		}
+	}
+
 	return 0
 }
 
